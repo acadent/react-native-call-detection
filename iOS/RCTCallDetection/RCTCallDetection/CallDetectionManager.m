@@ -74,6 +74,11 @@ RCT_EXPORT_METHOD(stopListener) {
         [self sendEventWithName:@"PhoneCallStateUpdate"
                                                      body:[eventNameMap objectForKey: call.callState]];
     }];
+
+    // Invoke callback handler explicitly for the first event 
+    // otherwise that event would be lost; 
+    // Subsequent events are handled because of the above 
+    // setCallEventHandler invocation;
     [self sendEventWithName:@"PhoneCallStateUpdate"
                                                      body:[eventNameMap objectForKey: call.callState]];
 }
